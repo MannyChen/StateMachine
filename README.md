@@ -1,5 +1,8 @@
 # StateMachine
 
+1. 伪代码，使用自行修编译错误
+2. 该检查的指针自行增加检查
+
 ```cpp
 class State{
 public:
