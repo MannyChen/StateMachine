@@ -63,7 +63,7 @@ enum{
 class LiftState final : public State{
 public:
   LiftState(id = STATE_LIFT) : State(id){}
-  ~LiftState() = default();
+  ~LiftState() = default;
   
   void init() override{
     std::out<<"LiftState init"<<std::endl;
@@ -81,7 +81,7 @@ public:
 class CatchState final : public State{
 public:
   CatchState(id = STATE_CATCH) : State(id){}
-  ~CatchState() = default();
+  ~CatchState() = default;
   
   void init() override{
     std::out<<"CatchState init"<<std::endl;
