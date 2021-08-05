@@ -55,10 +55,10 @@ e.g.
 ```cpp
 
 enum{
-  STATE_NONE = -1;
-  STATE_LIFT = 1;
-  STATE_CATCH = 2;
-}
+  STATE_NONE = -1，
+  STATE_LIFT = 1，
+  STATE_CATCH = 2，
+};
 
 class LiftState final : public State{
 public:
@@ -76,7 +76,7 @@ public:
   void exit() override{
     std::out<<"LiftState exit"<<std::endl;
   }
-}
+};
 
 class CatchState final : public State{
 public:
@@ -94,7 +94,7 @@ public:
   void exit() override{
     std::out<<"LiftState exit"<<std::endl;
   }
-}
+};
 
 Class  Engineer final : public StateSche{
 public: 
@@ -117,7 +117,7 @@ public:
   void EngineerMain({
     StateSche::tick();
   }
-}
+};
 
 Enigineer EnigineerImpl;
 int main(){
