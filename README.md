@@ -6,8 +6,8 @@
 ```cpp
 class State{
 public:
-  state(id = -1) : _state_id(id){}
-  virtual ~state() = default;
+  State(id = -1) : _state_id(id){}
+  virtual ~State() = default;
   
   virtual void init(){};
   virtual void run(){};
