@@ -108,8 +108,8 @@ public:
   
   ~Engineer(){
     for(auto& iter : StateSche::_state_list){
-      if (nullptr != iter->second){
-        delete iter->second;
+      if (nullptr != iter.second){
+        delete iter.second;
       }
     }
   }
