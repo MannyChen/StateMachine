@@ -11,7 +11,7 @@ public:
   
   virtual void init(){};
   virtual void run(){};
-  virtual void run(){};
+  virtual void exit(){};
 
 private:
   int32_t _state_id;
