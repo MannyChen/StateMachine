@@ -10,12 +10,12 @@ public:
   virtual ~State() = default;
   
   virtual void init(){};
-  virtual void run(){};
+  virtual int32_t run(){};
   virtual void exit(){};
 
 private:
-  int32_t _state_id;
-}
+  int32_t _state_id = -1;
+};
 
 class StateSche{
 public:
@@ -24,31 +24,39 @@ public:
   
   int32_t transitionTo(int32_t id){
     if (id == -1){
-      return -1001;
+      return -1001; ///< id not valid
     }
     
     if (id == _cur_state){
-      return -1002;
+      return -1002; ///< _cur_state is running
     }
     
-    ///< check _cur_state id
+    auto iter = _state_list.find(_cur_state);
+    if (iter == _state_list.end()){
+      return -1001; ///< _cur_state is not valid
+    }
     _state_list[_cur_state]->exit();
+    _cur_state = -1;
+    
+    iter = _state_list.find(id);
+    if (iter == _state_list.end()){
+      return -1001; ///< id is not valid
+    }
     _state_list[id]->init();
     
     _cur_state = id;
+    
+    return 0;
   }
   
   int32_t tick(){
     ///< check _cur_state
-    _state_list[_cur_state]->run();
+    return _state_list[_cur_state]->run();
   }
 private:
   int32_t _cur_state = -1;
   std::map<int32_t, State*> _state_list;
-}
-
-
-class 
+};
 ```
 
 e.g.
@@ -69,7 +77,7 @@ public:
     std::out<<"LiftState init"<<std::endl;
   }
   
-  void run() override{
+  int32_t run() override{
     std::out<<"LiftState run"<<std::endl;
   }
   
@@ -87,7 +95,7 @@ public:
     std::out<<"CatchState init"<<std::endl;
   }
   
-  void run() override{
+  int32_t run() override{
     std::out<<"CatchState run"<<std::endl;
   }
   
@@ -96,7 +104,7 @@ public:
   }
 };
 
-Class  Engineer final : public StateSche{
+class Engineer final : public StateSche{
 public: 
   Engineer(){
     StateSche::_state_list.clear();
